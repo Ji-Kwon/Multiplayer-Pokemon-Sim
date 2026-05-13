@@ -1,7 +1,16 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import TeamList from './pages/TeamList';
+import TeamBuilder from './pages/TeamBuilder';
+
 export default function App() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Pokemon Battle Simulator</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/teams" replace />} />
+        <Route path="/teams" element={<TeamList />} />
+        <Route path="/teams/new" element={<TeamBuilder />} />
+        <Route path="/teams/:id" element={<TeamBuilder />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
