@@ -1,0 +1,30 @@
+PHASE 1 — FOUNDATION           All sequential. Schema decisions affect everything downstream.
+  Step 1: Project scaffolding
+  Step 2: DB migrations
+  Step 3: PokeAPI import
+
+PHASE 2 — USER & TEAM API      Sequential. Auth must exist before teams.
+  Step 4: Auth API
+  Step 5: Team Builder API
+                                ▼ API contract is now stable ▼
+PHASE 3 — TEAM BUILDER UI  ◄── PARALLEL with Step 7 (battle engine types)
+  Step 6: Team Builder UI
+
+PHASE 4 — BATTLE ENGINE CORE   Sequential. Each part builds on the previous.
+  Step 7:  Types + state object
+  Step 8:  Damage calculator
+  Step 9:  Turn resolver skeleton
+  Step 10: WebSocket battle protocol
+                                ▼ Handler interface is now stable ▼
+PHASE 5 — ENGINE COVERAGE  ◄── PARALLEL: up to 3 sessions at once
+  Step 11: Move effect handlers (can split into 2 sessions by category group)
+  Step 12: Ability handlers
+  Step 13: Item handlers
+
+PHASE 6 — BATTLE UI            Sequential to start, then parallel
+  Step 14: Core battle UI (state display, move selection)
+  Step 15: 1v1 polish + 2v2 mechanics  ◄── PARALLEL once core is done
+
+PHASE 7 — ML SERVICE           Fully parallel with anything after Step 10
+  Step 16: Python FastAPI skeleton + rule-based AI
+  Step 17: RL training (long-running, background)
